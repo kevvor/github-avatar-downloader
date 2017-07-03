@@ -32,7 +32,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 function printURLS(jsonObject) {
   for (var i = 0; i < jsonObject.length; i++) {
     var img_url = jsonObject[i].avatar_url;
-    downloadImagesByURL(img_url, `./${jsonObject[i]['login']}.jpg`)
+    downloadImagesByURL(img_url, `./avatars/${jsonObject[i]['login']}.jpg`)
   }
 }
 
