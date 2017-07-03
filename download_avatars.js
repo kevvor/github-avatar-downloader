@@ -29,7 +29,8 @@ function getRepoContributors(repoOwner, repoName, cb) {
   });
 }
 
-function printURLS(jsonObject) {
+function printURLs(jsonObject) {
+
   for (var i = 0; i < jsonObject.length; i++) {
     var img_url = jsonObject[i].avatar_url;
     downloadImagesByURL(img_url, `./avatars/${jsonObject[i]['login']}.jpg`)
@@ -37,19 +38,21 @@ function printURLS(jsonObject) {
 }
 
 function downloadImagesByURL (url, filepath) {
+
   var options = {
     url: url,
     headers: {
       'User-Agent': 'kevvor'
     }
   };
+
   request.get(options)
     .on('response', function(response) {
       response.pipe(fs.createWriteStream(filepath));
-    })
+  })
 }
 
-getRepoContributors('jquery', 'jquery', printURLS);
+getRepoContributors(process.argv[2], process.argv[3], printURLs);
 
 
 
